@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="master.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title></title>
 </head>
 
@@ -14,23 +15,23 @@
     <div class="container container-fluid text-center clock-container">
         <div class="outer-clock">
             <div class="main-display-container">
-              <div id="display_heading" class="display-heading">Pomodoro clock</div>
-              <div id="display_text" class="display-text">
-                <p class="display-left">set work time</p>
-                <p class="display-right">set break time</p>
+              <div class="display-heading"><h1 id="display_heading">Pomodoro clock</h1></div>
+              <div class="display-text-container"><h2 id="display_text" class="display-text"></h2>
               </div>
-              <div class="row">
-                  <div class="display-time-container col-xs-4">
+              <div class="flex-wrapper">
+                  <div class="display-time-container">
+                    <p class="display-left">set work time</p>
                       <button id="session_increase" class="btn arrow-btn"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
                       <input id="session_input" name="session-time" value="25" class="text-center"/>
                       <button id="session_decrease" class="btn arrow-btn"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
                   </div>
-                  <div id="buttons" class="col-xs-4">
+                  <div id="buttons">
                       <button id="btn_start" class="btn btn-lg">Start</button>
                       <button id="btn_stop" class="btn btn-lg">Stop</button>
                   </div>
 
-                  <div class="display-time-container col-xs-4">
+                  <div class="display-time-container">
+                    <p class="display-right">set break time</p>
                       <button id="break_increase" class="btn arrow-btn"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
                       <input id="break_input" name="break-time" value="5" class="text-center"/>
                       <button id="break_decrease" class="btn arrow-btn"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>

@@ -1,10 +1,10 @@
 let getSession = () => {
-  let value = eval($("#session_input").val());
+  let value = parseInt($("#session_input").val());
   return value;
 };
 
 let getBreak = () => {
-  let value = eval($('#inputB').val());
+  let value = parseInt($('#break_input').val());
   return value;
 };
 
