@@ -1,87 +1,96 @@
+/*jshint esversion: 6*/
+
 let getSession = () => {
-  let value = parseInt($("#session_input").val());
+  let value = parseInt(document.getElementById('session_input').value);
   return value;
 };
 
 let getBreak = () => {
-  let value = parseInt($('#break_input').val());
+  let value = parseInt(document.getElementById('break_input').value);
   return value;
 };
 
+// Function for setting time
+
 var changeTime = function() {
-  let targetID = this.getAttribute("data-target");
-  let valueToChange = parseInt(this.getAttribute("data-value"));
+  let targetID = this.getAttribute('data-target');
+  let valueToChange = parseInt(this.getAttribute('data-value'));
   let targetValue;
-  if (targetID === "session_input") {
+  if (targetID === 'session_input') {
     targetValue = getSession();
   }
-  if (targetID === "break_input") {
+  if (targetID === 'break_input') {
     targetValue = getBreak();
   }
   if (targetValue + valueToChange < 0){
     targetValue = 0;
+  } else if (targetValue + valueToChange > 99) {
+    targetValue = 99;
   } else {
     targetValue += valueToChange;
   }
-  document.getElementById(targetID).setAttribute("value", targetValue);
-}
+  document.getElementById(targetID).setAttribute('value', targetValue);
+};
 
 let changeTimeElems = document.getElementsByClassName('change-time');
 let changeTimeElemsArray = Array.from(changeTimeElems);
 changeTimeElemsArray.forEach(function(el){
-  el.addEventListener("click", changeTime);
+  el.addEventListener('click', changeTime);
 });
 
+// Display the remaining time, update every second.
+
 let inte;
-$("#btn_start").on("click", () => {
-  if (inte){
+document.getElementById('btn_start').addEventListener('click', () => {
+  if (inte) {
     clearInterval(inte);
   }
 
-  let sMin = getSession();
-  let bMin = getBreak();
+  let sessionTime = getSession();
+  let breakTime = getBreak();
   let isNowSessionTime = true;
-  let min = sMin;
-  let sec = 0;
+  let minutesLeft = sessionTime;
+  let secondsLeft = 0;
   let timeDisplayed = "";
 
   inte = setInterval(function(){
-    if (isNowSessionTime === true){
-      $("#display_heading").html('WORK');
+    if (isNowSessionTime){
+      document.getElementById('display_heading').innerHTML = 'WORK';
     } else {
-      $("#display_heading").html('BREAK');
+      document.getElementById('display_heading').innerHTML = 'BREAK';
     }
 
-      if (sec > 0){
-        sec --;
+      if (secondsLeft > 0){
+        secondsLeft -= 1;
       } else {
-        if (sec === 0 && min > 0){
-        min --;
-        sec = 59;
+        if (secondsLeft === 0 && minutesLeft > 0){
+        minutesLeft -= 1;
+        secondsLeft = 59;
         }
       }
 
-      if (sec < 10){
-        timeDisplayed = `${min}:0${sec}`;
+      if (secondsLeft < 10){
+        timeDisplayed = `${minutesLeft}:0${secondsLeft}`;
       } else {
-        timeDisplayed = `${min}:${sec}`;
+        timeDisplayed = `${minutesLeft}:${secondsLeft}`;
       }
 
-      $("#display_text").html(timeDisplayed);
-      if (min === 0 && sec === 0){
+      document.getElementById('display_text').innerHTML = timeDisplayed;
+
+      if (minutesLeft === 0 && secondsLeft === 0){
         if (isNowSessionTime === true){
-        min = bMin;
-        sec = 0;
+        minutesLeft = breakTime;
+        secondsLeft = 0;
         isNowSessionTime = false;
       } else {
-        min = sMin;
-        sec = 0;
+        minutesLeft = sessionTime;
+        secondsLeft = 0;
         isNowSessionTime = true;
       }
     }
   }, 1000);
 });
 
-$("#btn_stop").on("click", function(){
+document.getElementById('button_stop').addEventListener('click', () => {
   clearInterval(inte);
 });
