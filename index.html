@@ -21,9 +21,9 @@
               <div class="flex-wrapper">
                   <div class="display-time-container">
                     <p class="display-left">set work time</p>
-                      <button id="session_increase" class="btn arrow-btn"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                      <button id="session_increase" class="change-time btn arrow-btn" data-target="session_input" data-value="1"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
                       <input id="session_input" name="session-time" value="25" class="text-center"/>
-                      <button id="session_decrease" class="btn arrow-btn"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                      <button id="session_decrease" class="change-time btn arrow-btn" data-target="session_input" data-value="-1"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
                   </div>
                   <div id="buttons">
                       <button id="btn_start" class="btn btn-lg">Start</button>
@@ -32,9 +32,9 @@
 
                   <div class="display-time-container">
                     <p class="display-right">set break time</p>
-                      <button id="break_increase" class="btn arrow-btn"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                      <button id="break_increase" class="change-time btn arrow-btn" data-target="break_input" data-value="1"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
                       <input id="break_input" name="break-time" value="5" class="text-center"/>
-                      <button id="break_decrease" class="btn arrow-btn"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                      <button id="break_decrease" class="change-time btn arrow-btn" data-target="break_input" data-value="-1"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
                   </div>
               </div>
             </div>

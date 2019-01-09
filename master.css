@@ -15,7 +15,7 @@ html, body {
   width: 100%;
   height: 100%;
   padding: 10px;
-  background-color : #e0442c;
+  background-color: #e0442c;
   border-radius: 40px;
   margin: auto;
   margin-top: 30px;
@@ -89,6 +89,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 @media (min-width: 700px) {

@@ -8,25 +8,29 @@ let getBreak = () => {
   return value;
 };
 
-  $("#session_increase").on("click", () => {
-    let s1 = getSession();
-    $("#session_input").val(s1 + 1);
-  });
+var changeTime = function() {
+  let targetID = this.getAttribute("data-target");
+  let valueToChange = parseInt(this.getAttribute("data-value"));
+  let targetValue;
+  if (targetID === "session_input") {
+    targetValue = getSession();
+  }
+  if (targetID === "break_input") {
+    targetValue = getBreak();
+  }
+  if (targetValue + valueToChange < 0){
+    targetValue = 0;
+  } else {
+    targetValue += valueToChange;
+  }
+  document.getElementById(targetID).setAttribute("value", targetValue);
+}
 
-  $("#session_decrease").on("click", () => {
-    let s2 = getSession();
-    $("#session_input").val(s2 - 1);
-  });
-
-  $("#break_increase").on("click", () => {
-    let b1 = getBreak();
-    $("#break_input").val(b1 + 1);
-  });
-
-  $("#break_decrease").on("click", () => {
-    let b2 = getBreak();
-    $("#break_input").val(b2 - 1);
-  });
+let changeTimeElems = document.getElementsByClassName('change-time');
+let changeTimeElemsArray = Array.from(changeTimeElems);
+changeTimeElemsArray.forEach(function(el){
+  el.addEventListener("click", changeTime);
+});
 
 let inte;
 $("#btn_start").on("click", () => {
